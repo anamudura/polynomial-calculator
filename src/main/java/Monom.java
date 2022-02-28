@@ -2,7 +2,7 @@ public class Monom {
     private int exponent;
     private int coeficient;
 
-    public Monom(int grad, int coef) {
+    public Monom(int coef, int grad) {
         this.exponent = grad;
         this.coeficient = coef;
     }
@@ -15,7 +15,7 @@ public class Monom {
         this.exponent = grad;
     }
 
-    public double getCoeficient() {
+    public int getCoeficient() {
         return coeficient;
     }
 
@@ -24,36 +24,42 @@ public class Monom {
     }
 
     public String toString() {
-        String term;
+        String mon;
         switch (exponent) {
             case 0:
-                term = String.valueOf(coeficient);
-                return term;
+                mon = String.valueOf(coeficient);
+                return mon;
 
             case 1:
                 switch (coeficient) {
                     case 1:
-                        term = "x";
-                        return term;
+                        mon = "x";
+                        return mon;
                     case -1:
-                        term = "-x";
-                        return term;
+                        mon = "-x";
+                        return mon;
                     default:
-                        term = String.valueOf(coeficient) + "x";
-                        return term;
+                        mon = String.valueOf(coeficient) + "x";
+                        return mon;
                 }
             default:
                 switch (coeficient) {
                     case 1:
-                        term = "x" + "^" + String.valueOf(exponent);
-                        return term;
+                        mon = "x" + "^" + String.valueOf(exponent);
+                        return mon;
                     case -1:
-                        term = "-x" + "^" + String.valueOf(exponent);
-                        return term;
+                        mon = "-x" + "^" + String.valueOf(exponent);
+                        return mon;
                     default:
-                        term = String.valueOf(coeficient) + "x" + "^" + String.valueOf(exponent);
-                        return term;
+                        mon = String.valueOf(coeficient) + "x" + "^" + String.valueOf(exponent);
+                        return mon;
                 }
         }
+    }
+    public Monom multiply(Monom m1, Monom m2) {
+        int nc = m1.getGrad() * m2.getGrad();
+        int ne = m1.getCoeficient() + m2.getCoeficient();
+        Monom m3 = new Monom(ne, nc);
+        return m3;
     }
 }
