@@ -24,7 +24,7 @@ public class Monom {
     }
 
     public String toString() {
-        String mon;
+        String mon = "";
         switch (exponent) {
             case 0:
                 mon = String.valueOf(coeficient);
@@ -32,6 +32,9 @@ public class Monom {
 
             case 1:
                 switch (coeficient) {
+                    case 0:
+                        mon = "0";
+                        return mon;
                     case 1:
                         mon = "x";
                         return mon;
@@ -56,10 +59,18 @@ public class Monom {
                 }
         }
     }
+
     public Monom multiply(Monom m1, Monom m2) {
-        int nc = m1.getGrad() * m2.getGrad();
-        int ne = m1.getCoeficient() + m2.getCoeficient();
-        Monom m3 = new Monom(ne, nc);
+        int nc, ne;
+        if ((m1.getGrad() == 0 && m2.getGrad() == 1) || (m1.getGrad() == 1 && m2.getGrad() == 0))
+            ne = 1;
+        else
+            ne = m1.getGrad() + m2.getGrad();
+        if ((m1.getCoeficient() == 0 && m2.getCoeficient() == 1) || (m1.getCoeficient() == 1 && m2.getCoeficient() == 0))
+            nc = 1;
+        else
+            nc = m1.getCoeficient() * m2.getCoeficient();
+        Monom m3 = new Monom(nc, ne);
         return m3;
     }
 }
