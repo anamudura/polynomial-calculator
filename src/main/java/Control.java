@@ -18,11 +18,24 @@ public class Control {
     class ComputeListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             if (view.b1.getText().equals("Compute")) {
-                if (view.t3.getText() != null && ((view.t1.getText().equals("") || view.t2.getText().equals("")))) {
-                    Polinom y = new Polinom();
-                    y.getInput(view.t3.getText());
-                    y.derivation(y);
-                    view.t5.setText("The resultant polynomial is: " + y.toString() + "\n");
+                if (view.t3.getText() != null && ((view.t1.getText().equals("") || view.t2.getText().equals("")))) {  //derivation / integration
+                    switch (view.operator.getSelectedIndex()) {
+                        case 3: {
+                            Polinom y = new Polinom();
+                            y.getInput(view.t3.getText());
+                            y.derivation(y);
+                            view.t5.setText("The resultant polynomial is: " + y.toString() + "\n");
+                        }
+                        break;
+
+                        case 4: {
+                            Polinom y = new Polinom();
+                            y.getInput(view.t3.getText());
+                            y.integration(y);
+                            view.t5.setText("The resultant polynomial is: " + y.toString()+ "+C " + "\n");
+                        }
+
+                    }
                 } else if ((view.t1.getText().equals("") || view.t2.getText().equals(""))) {
                     view.t5.setText("INTRODU AMBELE POLINOAME\n");
                 } else {

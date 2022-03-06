@@ -32,50 +32,6 @@ public class Polinom {
         }
     }
 
-    public void DerivTerm(int coefficient, int exponent) {
-        Monom t1 = new Monom(coefficient, exponent);
-        if (exponent > polinom.getFirst().getGrad()) {
-            polinom.addFirst(t1);
-        } else {
-            for (int j = 0; j < polinom.size(); j++) {
-                if (polinom.get(j).getGrad() == exponent) {
-                    if (exponent == 1) {
-                        Monom t2 = new Monom(coefficient * polinom.get(j).getGrad(), 0);
-                        polinom.set(j, t2);
-                        break;
-                    } else {
-                        Monom t2 = new Monom(coefficient * polinom.get(j).getGrad(), polinom.get(j).getGrad() - 1);
-                        polinom.set(j, t2);
-                        break;
-                    }
-                } else if (polinom.getLast() == polinom.get(j)) {
-
-                    if (exponent == 1) {
-                        Monom t2 = new Monom(coefficient * polinom.get(j).getGrad(), 0);
-
-                        polinom.addLast(t2);
-                        break;
-                    } else {
-                        Monom t2 = new Monom(coefficient * polinom.get(j).getGrad(), polinom.get(j).getGrad() - 1);
-                        polinom.addLast(t2);
-                        break;
-                    }
-                } else if (polinom.get(j).getGrad() > t1.getGrad() && t1.getGrad() > polinom.get(j + 1).getGrad()) {
-                    if (exponent == 1) {
-                        Monom t2 = new Monom(coefficient * polinom.get(j).getGrad(), 0);
-                        polinom.set(j + 1, t2);
-                        break;
-                    } else {
-                        Monom t2 = new Monom(coefficient * polinom.get(j).getGrad(), polinom.get(j).getGrad() - 1);
-                        polinom.set(j + 1, t2);
-                        break;
-                    }
-                }
-            }
-        }
-
-    }
-
     public void SubTerm(int coefficient, int exponent) {
         Monom t1 = new Monom(-coefficient, exponent);
         if (exponent > polinom.getFirst().getGrad()) {
@@ -106,7 +62,7 @@ public class Polinom {
                 else if (temp.getCoeficient() < 0)
                     poli += temp.getCoeficient();
             } else if (temp != polinom.getFirst() && temp.getGrad() > 0) {
-                poli +=  temp.toString();
+                poli += "+" + temp.toString();
             } else {
                 poli += temp.toString();
             }
@@ -164,8 +120,32 @@ public class Polinom {
     }
 
     public void derivation(Polinom y) {
-        for (Monom temp : y.polinom)
-            DerivTerm(temp.getCoeficient(), temp.getGrad());
+        for (int j = 0; j < polinom.size(); j++)
+            if (polinom.get(j).getGrad() == 1) {
+                Monom t1 = new Monom(polinom.get(j).getCoeficient() * polinom.get(j).getGrad(), 0);
+                polinom.set(j, t1);
+            } else if (polinom.get(j).getGrad() == 0) {
+                Monom t1 = new Monom(0, 0);
+                polinom.set(j, t1);
+            } else {
+                Monom t1 = new Monom(polinom.get(j).getCoeficient() * polinom.get(j).getGrad(), polinom.get(j).getGrad() - 1);
+                polinom.set(j, t1);
+            }
+
+    }
+    public void integration(Polinom y) {
+        for (int j = 0; j < polinom.size(); j++)
+            if(polinom.get(j).getGrad()==0){
+            Monom t1 = new Monom(polinom.get(j).getCoeficient(), 1);
+            polinom.set(j, t1);
+        }
+        else
+            {
+                double c = Double.valueOf(polinom.get(j).getCoeficient()/(polinom.get(j).getGrad()+1));
+                Monom t1 = new Monom(polinom.get(j).getCoeficient()/(polinom.get(j).getGrad()+1),polinom.get(j).getGrad()+1);
+                polinom.set(j,t1);
+            }
+
     }
 
     public void getInput(String input) {

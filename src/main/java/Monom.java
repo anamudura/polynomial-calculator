@@ -47,6 +47,9 @@ public class Monom {
                 }
             default:
                 switch (coeficient) {
+                    case 0:
+                        mon = "0";
+                        return mon;
                     case 1:
                         mon = "x" + "^" + String.valueOf(exponent);
                         return mon;

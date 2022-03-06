@@ -31,6 +31,7 @@ public class Vizualizare extends JPanel {
         operator.addItem("-");
         operator.addItem("*");
         operator.addItem("deriv");
+        operator.addItem("integrate");
         operator.setBackground(Color.WHITE);
         b1.setBackground(Color.GRAY);
         b2.setBackground(Color.GRAY);
