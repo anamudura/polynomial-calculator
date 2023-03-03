@@ -73,10 +73,6 @@ public class Vizualizare extends JPanel {
         t5.setText(newTotal);
     }
 
-    void showError(String errMessage) {
-        JOptionPane.showMessageDialog(this, errMessage);
-    }
-
     void addComputeButton(ActionListener comp) {
         b1.addActionListener(comp);
     }

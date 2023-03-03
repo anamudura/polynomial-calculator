@@ -61,11 +61,12 @@ public class Polinom {
                     poli += "+" + temp.getCoeficient();
                 else if (temp.getCoeficient() < 0)
                     poli += temp.getCoeficient();
-            } else if (temp != polinom.getFirst() && temp.getGrad() > 0) {
-                poli += "+" + temp.toString();
-            } else {
+            } else if (temp != polinom.getFirst() && temp.getGrad() > 0)
+
+                 poli += "+" + temp.toString();
+             else
                 poli += temp.toString();
-            }
+
         }
         if (poli.charAt(0) == '+') {
             String newPolynomial = poli.substring(1, poli.length());
@@ -74,7 +75,6 @@ public class Polinom {
             String newPolynomial = poli.substring(1, poli.length());
             return newPolynomial;
         }
-
         return poli;
     }
 
